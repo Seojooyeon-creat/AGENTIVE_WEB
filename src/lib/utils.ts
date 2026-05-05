@@ -86,6 +86,28 @@ export function getSourceMeta(source: string): SourceMeta {
   }
 }
 
+export function isExpired(notice: Notice): boolean {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  if (notice.apply_deadline) {
+    return new Date(notice.apply_deadline) < today
+  }
+
+  // apply_deadline이 없으면 date 텍스트에서 종료일 파싱
+  // 예: "신청기간 2026.04.22 00:00~2026.04.28 23:59"
+  if (notice.date) {
+    const match = notice.date.match(/~\s*(\d{4})[.\-](\d{1,2})[.\-](\d{1,2})/)
+    if (match) {
+      const [, y, m, d] = match
+      const deadline = new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`)
+      return deadline < today
+    }
+  }
+
+  return false
+}
+
 export function formatPeriod(start: string | null, end: string | null): string | null {
   if (!start && !end) return null
   const fmt = (iso: string) => iso.replace(/-/g, '.')
