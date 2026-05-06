@@ -79,6 +79,13 @@ export function getSourceMeta(source: string): SourceMeta {
       badgeClass: 'bg-emerald-100 text-emerald-700 border-emerald-200',
     }
   }
+  if (source.startsWith('소중대')) {
+    return {
+      label: '소프트웨어중심대학사업단',
+      color: '#9B59B6',
+      badgeClass: 'bg-violet-100 text-violet-700 border-violet-200',
+    }
+  }
   return {
     label: source,
     color: '#6B7280',

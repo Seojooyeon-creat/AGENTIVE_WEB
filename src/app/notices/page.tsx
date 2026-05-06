@@ -71,7 +71,9 @@ export default function NoticesPage() {
       const matchFilter =
         filter === '전체' ||
         (filter === '비교과' && n.source.startsWith('비교과')) ||
-        (filter === '학과' && n.source.startsWith('학과'))
+        (filter === '학과' && n.source.startsWith('학과')) ||
+        (filter === '소프트웨어중심대학사업단' && n.source.startsWith('소중대'))
+
       const q = search.toLowerCase()
       const matchSearch =
         !q || n.title.toLowerCase().includes(q) || (n.summary ?? '').toLowerCase().includes(q)
@@ -87,6 +89,7 @@ export default function NoticesPage() {
       전체: base.length,
       비교과: base.filter((n) => n.source.startsWith('비교과')).length,
       학과: base.filter((n) => n.source.startsWith('학과')).length,
+      소프트웨어중심대학사업단: base.filter((n) => n.source.startsWith('소중대')).length,
     }
   }, [notices, statusTab, today])
 
