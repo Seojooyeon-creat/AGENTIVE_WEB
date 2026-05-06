@@ -20,6 +20,9 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: '/notices',
+  },
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
