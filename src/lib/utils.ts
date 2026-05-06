@@ -80,9 +80,9 @@ export function getSourceMeta(source: string): SourceMeta {
     }
   }
   return {
-    label: '포털 공지',
-    color: '#2563EB',
-    badgeClass: 'bg-blue-100 text-blue-700 border-blue-200',
+    label: source,
+    color: '#6B7280',
+    badgeClass: 'bg-gray-100 text-gray-600 border-gray-200',
   }
 }
 
